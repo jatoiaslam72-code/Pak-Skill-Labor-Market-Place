@@ -1,79 +1,77 @@
 <!DOCTYPE html>
-<html lang="sd" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Skill Labor Market Place</title>
+    <title>Pak Skill Labor Market</title>
     <style>
-        :root { --primary: #004d40; --secondary: #1b5e20; --bg: #f4f7f6; }
-        body { margin: 0; font-family: sans-serif; background: var(--bg); }
-        .app { max-width: 600px; margin: auto; background: #fff; min-height: 100vh; }
-        header { background: var(--primary); color: white; padding: 20px; text-align: center; border-radius: 0 0 20px 20px; }
-        .form { padding: 20px; }
-        .group { margin-bottom: 15px; text-align: right; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--primary); }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 16px; }
-        .calc { background: #e8f5e9; padding: 15px; border-radius: 10px; margin: 20px 0; border-right: 5px solid var(--secondary); }
-        .btn { background: var(--secondary); color: white; width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        :root { --primary: #004d40; --secondary: #2e7d32; --bg: #f8f9fa; }
+        body { margin: 0; font-family: sans-serif; background: var(--bg); color: #333; }
+        .app-container { max-width: 500px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        header { background: var(--primary); color: white; padding: 25px 15px; text-align: center; border-bottom: 4px solid #ffc107; }
+        .form-section { padding: 20px; text-align: left; }
+        .group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--primary); font-size: 15px; }
+        .urdu-label { display: block; font-size: 16px; color: #555; margin-bottom: 8px; text-align: right; }
+        input, select { width: 100%; padding: 14px; border: 1px solid #ced4da; border-radius: 12px; font-size: 16px; outline: none; box-sizing: border-box; }
+        .calc-box { background: #f1f8e9; padding: 18px; border-radius: 15px; margin: 25px 0; border-left: 6px solid var(--secondary); }
+        .btn { background: var(--secondary); color: white; width: 100%; padding: 18px; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-<div class="app">
+<div class="app-container">
     <header>
-        <h1 style="margin:0;">Pak Skill Labor Market 🇵🇰</h1>
-        <p>پاڪستان جو پنهنجو پليٽ فارم</p>
+        <h1 style="margin:0; font-size: 24px;">Pak Skill Labor Market 🇵🇰</h1>
+        <p style="margin:5px 0 0 0; font-size: 14px;">Connecting Professionals Across Pakistan</p>
     </header>
-    <div class="form">
+    <div class="form-section">
         <div class="group">
-            <label>پورهيت جو نالو:</label>
-            <input type="text" id="name" placeholder="مثال: محمد اسلم / مسمات بي بي">
+            <span class="urdu-label">ورکر کا نام:</span>
+            <label>Worker Full Name:</label>
+            <input type="text" id="name" placeholder="e.g. Mohammad Aslam">
         </div>
         <div class="group">
-            <label>هنر (Skill) چونڊيو:</label>
+            <span class="urdu-label">ہنر کا انتخاب کریں:</span>
+            <label>Select Category / Skill:</label>
             <select id="skill">
-                <option value="">-- ڪيٽيگري چونڊيو --</option>
-                <optgroup label="گهريلو خدمتون">
-                    <option>ڪم واري مائي (House Maid)</option>
-                    <option>باورچي (Cook)</option>
-                    <option>ٻارن جي سنڀال (Nanny)</option>
+                <option value="">-- Choose Category --</option>
+                <optgroup label="Domestic (گھریلو)">
+                    <option>House Maid (کام والی مائی)</option>
+                    <option>Cook / Chef (باورچی)</option>
+                    <option>Driver (ڈرائیور)</option>
                 </optgroup>
-                <optgroup label="ٽيڪنيڪل">
-                    <option>اليڪٽريشن (Electrician)</option>
-                    <option>سولر ماهر (Solar)</option>
-                    <option>موٽر وائينڊنگ (Motor Winding)</option>
-                    <option>اي سي مستري (AC Tech)</option>
-                    <option>گيراج مستري (Mechanic)</option>
-                </optgroup>
-                <optgroup label="ٻيا هنر">
-                    <option>ڊرائيور (Driver)</option>
-                    <option>راڄو مستري (Mason)</option>
-                    <option>واڍو (Carpenter)</option>
-                    <option>درزي (Tailor)</option>
+                <optgroup label="Technical (ٹیکنیکل)">
+                    <option>Electrician (الیکٹریشن)</option>
+                    <option>AC Technician (اے سی ٹیکنیشن)</option>
+                    <option>Plumber (پلمبر)</option>
                 </optgroup>
             </select>
         </div>
         <div class="group">
-            <label>سڃاڻپ ڪارڊ (CNIC):</label>
-            <input type="number" placeholder="42101XXXXXXXXX">
+            <span class="urdu-label">کام کی فیس:</span>
+            <label>Service Fee (PKR):</label>
+            <input type="number" id="fee" placeholder="Enter Amount" oninput="calculate()">
         </div>
-        <div class="group">
-            <label>ڪم جي فيس (روپيا):</label>
-            <input type="number" id="fee" placeholder="فيس لکو" oninput="calc()">
+        <div class="calc-box">
+            <div style="display:flex; justify-content:space-between;">
+                <span>App Fee (10%):</span>
+                <span id="comm">0 PKR</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-weight:bold; margin-top:10px; font-size:18px; color:var(--secondary);">
+                <span>Worker Net Pay:</span>
+                <span id="net">0 PKR</span>
+            </div>
         </div>
-        <div class="calc">
-            ائپ ڪميشن (10%): <span id="comm">0</span> روپيا <br>
-            <strong>صاف ڪمائي: <span id="net">0</span> روپيا</strong>
-        </div>
-        <button class="btn" onclick="alert('درخواست موڪلي وئي!')">رجسٽريشن ڪريو</button>
+        <button class="btn" onclick="alert('Registration Request Sent!')">REGISTER NOW / رجسٹریشن کریں</button>
     </div>
 </div>
 <script>
-    function calc() {
+    function calculate() {
         let f = document.getElementById('fee').value;
         if(f > 0) {
             let c = Math.round(f * 0.10);
-            document.getElementById('comm').innerText = c;
-            document.getElementById('net').innerText = (f - c);
+            document.getElementById('comm').innerText = c + " PKR";
+            document.getElementById('net').innerText = (f - c) + " PKR";
         }
     }
 </script>
